@@ -18,7 +18,6 @@ app.set('view engine', 'jade');
 
 app.use(function(req, res, next) {
   res.ok = function(result, err, errCode) {
-    console.log('OK');
     this.send({success: true, result, err, errCode});
   };
   next();

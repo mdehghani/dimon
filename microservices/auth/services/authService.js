@@ -4,7 +4,7 @@ const Promise = require("bluebird");
 const uuid = require('uuid');
 const redis = require("redis");
 const client = Promise.promisifyAll(redis.createClient());
-const jwt = require('jsonwebtoken');
+const jwt = Promise.promisifyAll(require('jsonwebtoken'));
 
 const secretKey = 'sg92pjfslGq2r6jglkAH3fdSGlk2jRFfaSDF32F@#RSdfralaidjliLJW';
 
@@ -38,7 +38,7 @@ auth.login = function(username, password) {
 		if (!user) return null;
 		return createSession(user)
 		.then(function(userData) {
-			return jwt.sign(userData, secretKey, {expiresIn: 24*3600}); //24 hours
+			return jwt.signAsync(userData, secretKey, {expiresIn: 24*3600}); //24 hours
 		})
 	})
 }

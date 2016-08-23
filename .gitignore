@@ -30,6 +30,7 @@ build/Release
 node_modules
 */**/node_modules
 microservices/auth/node_modules
+microservices/api/node_modules
 
 jspm_packages
 
@@ -38,3 +39,5 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+microservices/auth/config/*
