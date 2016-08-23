@@ -1,0 +1,439 @@
+define({ "api": [
+  {
+    "type": "get",
+    "url": "acc.xyz.ir/v1/transactions/last/:count",
+    "title": "Get Last Transactions",
+    "version": "0.1.0",
+    "name": "GetTransactions",
+    "group": "Accounting",
+    "permission": [
+      {
+        "name": "user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "count",
+            "defaultValue": "1",
+            "description": "<p>Number of transactions to retreive. Pass 0 to get all of transactions (if it is possible)</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header (format: Bearer token)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer abcd.efghi.jkl\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Flag</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "result",
+            "description": "<p>Array of transactions</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n    {\n      \"success\": true,\n      \"result\": {[\n\t        {\n            id,\n            ts,\n            amount,\n            status,\n            desc,\n         }\n      ]}\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "example/example.js",
+    "groupTitle": "Accounting",
+    "sampleRequest": [
+      {
+        "url": "https://api.xyz.com/v1acc.xyz.ir/v1/transactions/last/:count"
+      }
+    ]
+  },
+  {
+    "type": "post",
+    "url": "auth.xyz.ir/v1/register",
+    "title": "Confirm registered user",
+    "version": "0.1.0",
+    "name": "Confirm",
+    "group": "Auth",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNo",
+            "description": "<p>Phone Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Confirmation Code</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "deviceId",
+            "description": "<p>The Device ID (e.g. IMEI)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Flag</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "example/example.js",
+    "groupTitle": "Auth",
+    "sampleRequest": [
+      {
+        "url": "https://api.xyz.com/v1auth.xyz.ir/v1/register"
+      }
+    ]
+  },
+  {
+    "type": "post",
+    "url": "auth.xyz.ir/v1/login",
+    "title": "Login",
+    "version": "0.1.0",
+    "name": "Login",
+    "group": "Auth",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "username",
+            "optional": false,
+            "field": "Username",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "password",
+            "optional": false,
+            "field": "Password",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Flag</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "result",
+            "description": "<p>Result</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "result.token",
+            "description": "<p>A JWT token will be used for authentication and authorization in all requests. This token has phoneNo, username, type, permission, sid, and aid</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"result\": {\n     token: \"abcd.efghi.jkl\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "example/example.js",
+    "groupTitle": "Auth",
+    "sampleRequest": [
+      {
+        "url": "https://api.xyz.com/v1auth.xyz.ir/v1/login"
+      }
+    ]
+  },
+  {
+    "type": "post",
+    "url": "auth.xyz.ir/v1/register",
+    "title": "Register a new user",
+    "version": "0.1.0",
+    "name": "Register",
+    "group": "Auth",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNo",
+            "description": "<p>Phone Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Flag</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "example/example.js",
+    "groupTitle": "Auth",
+    "sampleRequest": [
+      {
+        "url": "https://api.xyz.com/v1auth.xyz.ir/v1/register"
+      }
+    ]
+  },
+  {
+    "type": "ws",
+    "url": "api.xyz.ir/v1/ws",
+    "title": "Receive Money",
+    "version": "0.1.0",
+    "name": "ReceiveMoney",
+    "group": "Core",
+    "permission": [
+      {
+        "name": "user receiver"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "amount",
+            "description": "<p>Amount to transfer (in Tomans)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the aid (account id) of sender</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header (format: Bearer token)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer abcd.efghi.jkl\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "description": "<p>It is a WebSocket api. To use it, send data to the following namespace/room:</p> <p>namespace: '/transfer'</p> <p>room: 'receive/req'</p> <p>When data is sent, listen on the following room for response:</p> <p>room: 'receive/res'</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Flag</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "example/example.js",
+    "groupTitle": "Core",
+    "sampleRequest": [
+      {
+        "url": "https://api.xyz.com/v1api.xyz.ir/v1/ws"
+      }
+    ]
+  },
+  {
+    "type": "ws",
+    "url": "api.xyz.ir/v1/ws",
+    "title": "Send Money",
+    "version": "0.1.0",
+    "name": "SendMoney",
+    "group": "Core",
+    "permission": [
+      {
+        "name": "user sender"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "amount",
+            "description": "<p>Amount to transfer (in Tomans)</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header (format: Bearer token)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer abcd.efghi.jkl\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "description": "<p>It is a WebSocket api. To use it, send data to the following namespace/room:</p> <p>namespace: '/transfer'</p> <p>room: 'send/req'</p> <p>When data is sent, listen on the following room for response:</p> <p>room: 'send/res'</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Success Flag</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "example/example.js",
+    "groupTitle": "Core",
+    "sampleRequest": [
+      {
+        "url": "https://api.xyz.com/v1api.xyz.ir/v1/ws"
+      }
+    ]
+  }
+] });

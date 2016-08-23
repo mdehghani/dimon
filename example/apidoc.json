@@ -1,0 +1,9 @@
+{
+  "name": "dimon-docs",
+  "version": "0.1.0",
+  "description": "DiMon API docs",
+  "title": "API docs for DiMon",
+  "sampleUrl": "https://api.xyz.com/v1",
+  "template": {
+  }
+}
